@@ -1,0 +1,54 @@
+{%  extends "base.html" %}
+{%  block content %}
+    <br>
+    <div class="container">
+        <div class="row">
+            <form action="" method="post" class="form-horizontal">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    <label for="inputName" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                        {{ form.name(class_="form-control", id="inputName", placeholder="Name") }}
+                    </div>
+                    {%  for error in form.name.errors %}
+                        <div class="col-sm-offset-2 col-sm-10 alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="inputNickname" class="col-sm-2 control-label">Nickname</label>
+                    <div class="col-sm-10">
+                        {{ form.nickname(class_="form-control", id="inputNickname", placeholder="Nickname") }}
+                    </div>
+                    {%  for error in form.nickname.errors %}
+                        <div class="col-sm-offset-2 col-sm-10 alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="inputUrl" class="col-sm-2 control-label">Artist's website</label>
+                    <div class="col-sm-10">
+                        {{ form.url(class_="form-control", id="inputUrl", placeholder="Artist's website") }}
+                    </div>
+                    {%  for error in form.url.errors %}
+                        <div class="col-sm-offset-2 col-sm-10 alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                {% for lang in languages %}
+                    <div class="form-group">
+                        <label for="{{ "inputAbout" + lang.code }}"  class="col-sm-2 control-label">{{ 'About ' + lang.name }}</label>
+                        <div class="col-sm-10">
+                            {{ form['about_' + lang.code](class_="form-control", id="inputAbout" + lang.code, placeholder="Info about artist") }}
+                        </div>
+                    {%  for error in form['about_' + lang.code].errors %}
+                        <div class="col-sm-offset-2 col-sm-10 alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                {% endfor %}
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button name="save_artist_button" type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

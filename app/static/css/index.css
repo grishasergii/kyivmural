@@ -1,0 +1,61 @@
+.with-background {
+    background-color: gainsboro;
+}
+
+.padding-5 {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.with-margin {
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
+}
+
+.with-shadow {
+    bkit-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.5);
+}
+
+.thumbnail {
+    border: none !important;
+    height: 300px !important;
+    /* overflow: hidden; */
+    padding: 0 !important;
+    border-radius: 0 !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    overflow: hidden;
+}
+
+.thumbnail img {
+    object-fit: cover !important; /* Do not scale the image */
+    /* object-position: center; /* Center the image within the element */
+}
+
+.mural-caption {
+    color: #ffffff;
+    text-align: center;
+    line-height: 300px;
+    font-size: x-large;
+    text-decoration: none !important;
+}
+
+.thumbnail a {
+    text-decoration: none !important;
+}
+
+.img-info-window {
+    width: 100%;
+    max-height: 320px;
+}
+
+.mural-title a {
+    text-decoration: underline !important;
+}

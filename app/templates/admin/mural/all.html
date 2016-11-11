@@ -1,0 +1,51 @@
+{%  extends "base.html" %}
+{%  block content %}
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-md-9">
+                <h4>Murals: {{ murals|count }}</h4>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-success btn-block" href="{{ url_for('admin.mural_create') }}" role="button">New</a>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <table class="table table-responsive table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Address</th>
+                        <th>Lat</th>
+                        <th>Lng</th>
+                        <th>Artist</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for mural in murals %}
+                    <tr>
+                        <td>{{ mural.id }}</td>
+                        <td>{{ mural.get_address() }}</td>
+                        <td>{{ mural.lat }}</td>
+                        <td>{{ mural.lng }}</td>
+                        <td>{{ mural.artist_names }}</td>
+                        <td>
+                            <form action="{{ url_for('admin.mural_delete', id=mural.id) }}" method="post">
+                                <button type="submit" class="btn btn-danger btn-xs">Delete</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{{ url_for('admin.mural_update', id=mural.id) }}" method="post">
+                                <button type="submit" name="edit_form_button" class="btn btn-primary btn-xs">Edit</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

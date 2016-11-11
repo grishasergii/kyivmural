@@ -1,0 +1,25 @@
+.navbar {
+    margin-bottom: 0 !important;
+    border-radius: 0 !important;
+}
+
+.navbar-admin {
+    background-color: #5a0005;
+    border-color: #5a0005;
+}
+
+.navbar-admin li a, .navbar-admin .navbar-brand {
+    color: #ffffff !important;
+}
+
+.navbar-admin li a:hover, .navbar-admin .navbar-brand:hover {
+    color: #9d9d9d !important;
+}
+
+.navbar-main a, .navbar-admin .navbar-brand {
+    color: #ffffff !important;
+}
+
+.navbar-main li a:hover, .navbar-main .navbar-brand:hover {
+    color: #9d9d9d !important;
+}

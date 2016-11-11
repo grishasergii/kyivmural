@@ -1,0 +1,27 @@
+{%  extends "base.html" %}
+
+{%  block content %}
+    <div class="w3-container">
+        <h2>Sign In</h2>
+    </div>
+    <form action="" method="post" name="login" class="w3-container">
+        {{ form.hidden_tag() }}
+
+        <label class="w3-label"><b>Name</b></label>
+        {{ form.username(size=30, class_="w3-input w3-border") }}
+        {%  for error in form.username.errors %}
+            <div class="w3-panel w3-red"><p>[{{ error }}]</p></div>
+        {% endfor %}<br>
+
+        <label class="w3-label"><b>Password</b></label>
+        {{ form.password(size=30, class_="w3-input w3-border") }}
+        {%  for error in form.password.errors %}
+            <div class="w3-panel w3-red"><p>[{{ error }}]</p></div>
+        {% endfor %}<br>
+
+        {{ form.remember_me(class_="w3-check") }}
+        <label class="w3-validate">Remember Me</label><br><br>
+
+        <button class="w3-button w3-blue-grey">Sign In</button>
+    </form>
+{%  endblock %}

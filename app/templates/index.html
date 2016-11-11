@@ -1,0 +1,58 @@
+{%  extends "base.html" %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+{%  endblock %}
+
+{% block scripts %}
+    {{ super() }}
+    <script src="http://maps.google.com/maps/api/js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='js/gmaps.min.js') }}"></script>
+    <script>
+        var map = new GMaps({
+            el: '#map',
+            lat: 50.450487,
+            lng: 30.519516,
+            zoom: 12
+        });
+        {% for mural in murals %}
+            map.addMarker({
+                lat: {{ mural.lat }},
+                lng: {{ mural.lng }},
+                infoWindow: {
+                    content:
+                             '<p class="mural-title">{{ mural.get_address(get_locale()) }} <a href="{{ url_for('main.mural', mural_id=mural.id) }}"> {{ gettext('more') }}...</a></p>' +
+                             '<p><img src="{{ url_for('static', filename='mural_img/' + mural.photos[0].file_name) }}" class="img-info-window"></p>'
+                }
+            })
+        {% endfor %}
+    </script>
+{% endblock %}
+
+{%  block content %}
+    {{ super() }}
+    <div class="container-fluid">
+        <div class="row">
+            <div id="map" style="width: 100%; height: 500px"></div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <h2>Explore</h2>
+            </div>
+        </div>
+        <div class="row with-margin">
+            {% for m in random_murals %}
+                <div class="col-sm-3">
+                    <a href="{{ url_for('main.mural', mural_id=m.id) }}">
+                    <div class="thumbnail no-margin with-shadow") style="background-image: url('{{ url_for('static', filename='mural_img/' + m.photos[0].file_name) }}')">
+
+                    </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

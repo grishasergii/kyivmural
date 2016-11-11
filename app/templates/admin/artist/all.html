@@ -1,0 +1,55 @@
+{%  extends "base.html" %}
+{%  block content %}
+    <div class="container">
+        <br>
+        <div class="row">
+            <div class="col-md-9">
+                <h4>Artists: {{ artists|count }}</h4>
+            </div>
+            <div class="col-md-3">
+                <a class="btn btn-success btn-block" href="{{ url_for('admin.artist_create') }}" role="button">New</a>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <table class="table table-responsive table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Nickname</th>
+                        <th>URL</th>
+                        {% for lang in languages %}
+                            <th>About {{ lang.code }}</th>
+                        {% endfor %}
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for artist in artists %}
+                    <tr>
+                        <td>{{ artist.id }}</td>
+                        <td>{{ artist.name }}</td>
+                        <td>{{ artist.nickname }}</td>
+                        <td>{{ artist.url }}</td>
+                        {% for lang in languages %}
+                            <td>{{ artist.get_about(lang.code) }}</td>
+                        {% endfor %}
+                        <td>
+                            <form action="{{ url_for('admin.artist_delete', id=artist.id) }}" method="post">
+                                <button type="submit" class="btn btn-danger btn-xs">Delete</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{{ url_for('admin.artist_update', id=artist.id) }}" method="post">
+                                <button type="submit" name="edit_form_button" class="btn btn-primary btn-xs">Edit</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

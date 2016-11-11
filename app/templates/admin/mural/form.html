@@ -1,0 +1,140 @@
+{%  extends "base.html" %}
+{%  block content %}
+    <br>
+    <div class="container">
+        <div class="row">
+            <form action="" method="post" class="form-horizontal" enctype="multipart/form-data">
+                {{ form.hidden_tag() }}
+                <div class="form-group">
+                    <label for="inputLat" class="col-sm-2 control-label">Latitude</label>
+                    <div class="col-sm-10">
+                        {{ form.lat(class_="form-control", id="inputLat", placeholder="Latitude") }}
+                    </div>
+                    {%  for error in form.lat.errors %}
+                        <div class="col-sm-offset-2 col-sm-10 alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="inputLongitude" class="col-sm-2 control-label">Longitude</label>
+                    <div class="col-sm-10">
+                        {{ form.lng(class_="form-control", id="inputLongitude", placeholder="Longitude") }}
+                    </div>
+                    {%  for error in form.lng.errors %}
+                        <div class="col-sm-offset-2 col-sm-10 alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="inputArtist" class="col-sm-2 control-label">Artist</label>
+                    <div class="col-sm-10">
+                        {{ form.artist(class_="form-control", id="inputArtist") }}
+                    </div>
+                    {%  for error in form.artist.errors %}
+                        <div class="col-sm-offset-2 col-sm-10 alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="inputPhotoFiles" class="col-sm-2 control-label">Photos</label>
+                    <div class="col-sm-10">
+                        {{ form.photo_files(id="inputPhotoFiles", multiple="", name_="photos") }}
+                    </div>
+                    {%  for error in form.photo_files.errors %}
+                        <div class="col-sm-offset-2 col-sm-10 alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="inputPhotoRenameTo" class="col-sm-2 control-label">Rename photos to</label>
+                    <div class="col-sm-10">
+                        {{ form.photo_rename_to(class_="form-control", id="inputPhotoRenameTo", placeholder="Rename photos to") }}
+                    </div>
+                    {%  for error in form.photo_rename_to.errors %}
+                        <div class="col-sm-offset-2 col-sm-10 alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="inputPhotoCopyrightName" class="col-sm-2 control-label">Copyright name</label>
+                    <div class="col-sm-10">
+                        {{ form.photo_copyright_name(class_="form-control", id="inputPhotoCopyrightName", placeholder="Copyright name") }}
+                    </div>
+                    {%  for error in form.photo_copyright_name.errors %}
+                        <div class="col-sm-offset-2 col-sm-10 alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                <div class="form-group">
+                    <label for="inputPhotoCopyrightUrl" class="col-sm-2 control-label">Copyright url</label>
+                    <div class="col-sm-10">
+                        {{ form.photo_copyright_url(class_="form-control", id="inputPhotoCopyrightUrl", placeholder="Copyright url") }}
+                    </div>
+                    {%  for error in form.photo_copyright_url.errors %}
+                        <div class="col-sm-offset-2 col-sm-10 alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                </div>
+                {% for lang in languages %}
+                    <div class="form-group">
+                        <label for="{{ "inputAddress" + lang.code }}"  class="col-sm-2 control-label">{{ 'Address ' + lang.name }}</label>
+                        <div class="col-sm-10">
+                            {{ form['address_' + lang.code](class_="form-control", id="inputAddress" + lang.code, placeholder="Address") }}
+                        </div>
+                    {%  for error in form['address_' + lang.code].errors %}
+                        <div class="col-sm-offset-2 col-sm-10 alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ "inputName" + lang.code }}"  class="col-sm-2 control-label">{{ 'Name ' + lang.name }}</label>
+                        <div class="col-sm-10">
+                            {{ form['name_' + lang.code](class_="form-control", id="inputName" + lang.code, placeholder="Name") }}
+                        </div>
+                    {%  for error in form['name_' + lang.code].errors %}
+                        <div class="col-sm-offset-2 col-sm-10 alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                    </div>
+                    <div class="form-group">
+                        <label for="{{ "inputDescription" + lang.code }}"  class="col-sm-2 control-label">{{ 'Description ' + lang.name }}</label>
+                        <div class="col-sm-10">
+                            {{ form['description_' + lang.code](class_="form-control", id="inputDescription" + lang.code, placeholder="Description") }}
+                        </div>
+                    {%  for error in form['description_' + lang.code].errors %}
+                        <div class="col-sm-offset-2 col-sm-10 alert alert-danger">{{ error }}</div>
+                    {% endfor %}
+                     </div>
+                {% endfor %}
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button name="save_mural_button" type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="row">
+            {% set step = 0 %}
+            {% for photo in photos %}
+                {% if step > 2 %}
+                    {% set step = 0 %}
+                        </div>
+                        <div class="row">
+                {% endif %}
+                <div class="col-sm-6 col-md-4">
+                    <div class="thumbnail">
+                        <img src="{{ url_for('static', filename='mural_img/' + photo.file_name) }}">
+                        <div class="caption">
+                            <p>
+                                Photo by {{ photo.copyright_name }}
+                                {% if photo.copyright_url != "" %}
+                                    <a href="{{ photo.copyright_url }}">source</a>
+                                {% endif %}
+                            </p>
+                            <p>
+                                <form action="{{ url_for('admin.mural_photo_update', id=photo.id) }}" method="post">
+                                    <button type="submit" name="edit_mural_photo_button" class="btn btn-primary btn-xs">Edit</button>
+                                </form>
+                                <form action="{{ url_for('admin.mural_photo_delete', id=photo.id) }}" method="post">
+                                    <button type="submit" name="delete_mural_photo_button" class="btn btn-danger btn-xs">Delete</button>
+                                </form>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                {% set step=step + 1 %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
