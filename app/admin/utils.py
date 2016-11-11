@@ -1,14 +1,15 @@
 import os
 from flask import request
 from werkzeug.utils import secure_filename
-from run import app
+# from run import app
 from .. import db
 from ..models import Mural, Language, Artist, ArtistTranslation, MuralPhoto, MuralTranslation
 
 
 def allowed_file(filename):
-    return '.' in filename and \
-           filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
+    return True
+    # return '.' in filename and \
+           # filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
 
 
 def save_file(file, new_name):
@@ -16,7 +17,7 @@ def save_file(file, new_name):
     if allowed_file(filename):
         _, extension = os.path.splitext(filename)
         filename = new_name + extension
-        file.save(os.path.join(app.config['MURAL_IMG_FOLDER'], filename))
+        #file.save(os.path.join(app.config['MURAL_IMG_FOLDER'], filename))
         return True, filename
     else:
         return False, None

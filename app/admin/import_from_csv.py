@@ -1,5 +1,4 @@
 from werkzeug.utils import secure_filename
-from run import app
 from .. import db
 from ..models import Mural, Language, Artist, ArtistTranslation, MuralPhoto, MuralTranslation
 import os
