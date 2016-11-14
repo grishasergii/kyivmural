@@ -30,8 +30,3 @@ def mural(mural_id):
     else:
         abort(404)
 
-
-@main.route('/release', methods=['POST'])
-def release():
-    import subprocess
-    subprocess.call(['/home/www/release-kyivmural.sh'])
