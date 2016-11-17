@@ -15,9 +15,11 @@ def login():
             if user.verify_password(form.password.data):
                 login_user(user, remember=form.remember_me.data)
                 return redirect(request.args.get('next') or url_for('main.root'))
-            flash('Invalid password.')
+            # flash('Invalid password.')
+            form.password.errors.append('Wrong password')
         else:
-            flash('Invalid username.')
+            # flash('Invalid username.')
+            form.username.errors.append('Unknown username')
 
     return render_template('auth/login.html',
                            title='Sign In',
