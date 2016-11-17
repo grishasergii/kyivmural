@@ -27,9 +27,10 @@ def deploy():
     Run deployment tasks
     :return: nothing
     """
-    from flask_migrate import upgrade
+    from flask_migrate import upgrade, migrate
     from app.models import Language, User
 
+    migrate()
     upgrade()
 
     Language.insert_languages()
