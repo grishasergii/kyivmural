@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, request
+from flask import render_template, redirect, url_for, request, g
 from . import admin
 from flask_login import login_required
 from ..models import Mural, Language, Artist, ArtistTranslation, MuralPhoto, MuralTranslation
@@ -217,7 +217,7 @@ def import_csv():
     if form.validate_on_submit():
         csv_file = request.files['csv_file']
         import_from_csv(csv_file)
-        return redirect(url_for('admin.murals'))
+        return redirect(url_for('admin.murals', lang_code=g.get('current_lang', 'uk')))
 
     return render_template('admin/import_csv/form.html',
                            title='Import Recirds from csv',

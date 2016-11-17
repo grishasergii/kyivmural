@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request
+from flask import render_template, flash, redirect, url_for, request, g
 from .forms import LoginForm
 from . import auth
 from ..models import User
@@ -28,5 +28,4 @@ def login():
 @login_required
 def logout():
     logout_user()
-    flash('You have been logged out')
-    return redirect(url_for('main.index'))
+    return redirect(url_for('main.index', lang_code=g.get('current_lang', 'uk')))
