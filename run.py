@@ -20,5 +20,21 @@ manager.add_command('db', MigrateCommand)
 
 event.listen(MuralPhoto, 'after_delete', after_photo_delete_listener)
 
+
+@manager.command
+def deploy():
+    """
+    Run deployment tasks
+    :return: nothing
+    """
+    from flask_migrate import upgrade
+    from app.models import Language, User
+
+    upgrade()
+
+    Language.insert_languages()
+    User.insert_admin()
+
+
 if __name__ == '__main__':
     manager.run()

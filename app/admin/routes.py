@@ -1,6 +1,6 @@
 from flask import render_template, redirect, url_for, request
 from . import admin
-from flask.ext.login import login_required
+from flask_login import login_required
 from ..models import Mural, Language, Artist, ArtistTranslation, MuralPhoto, MuralTranslation
 from .forms import artist_form, mural_form, MuralPhotoForm, ImportCsvForm
 from .. import db

@@ -138,6 +138,21 @@ class Language(db.Model):
     def __repr__(self):
         return '<Language %r %r>' % (self.code, self.name)
 
+    @staticmethod
+    def insert_languages():
+        languages = [
+            ('English', 'en'),
+            ('Ukrainian', 'uk')
+        ]
+        for l in languages:
+            lang = Language.query.get(l[1])
+            if lang is None:
+                lang = Language()
+                lang.name = l[0]
+                lang.code = l[1]
+                db.session.add(lang)
+                db.session.commit()
+
 
 class MuralTranslation(db.Model):
     __tablename__ = 'mural_translations'
@@ -193,6 +208,19 @@ class User(UserMixin, db.Model):
 
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    @staticmethod
+    def insert_admin():
+        username = os.environ.get('KYIVMURAL_ADMIN_USERNAME')
+        password = os.environ.get('KYIVMURAL_ADMIN_PASSWORD')
+
+        u = User.query.filter_by(username=username).first()
+        if u is None:
+            u = User()
+            u.username = username
+            u.password = password
+            db.session.add(u)
+            db.session.commit()
 
 
 
