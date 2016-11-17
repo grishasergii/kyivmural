@@ -2,6 +2,7 @@
 
 {% block styles %}
     {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/navbar.css')}}">
 {%  endblock %}
 
