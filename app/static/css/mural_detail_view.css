@@ -6,7 +6,7 @@
 
 .img-container {
     float: left;
-    padding-top: 4px;
+    padding-top: 0px;
     padding-bottom: 0px;
     padding-right: 0px;
     padding-left: 0px;
@@ -14,7 +14,7 @@
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0px;
-    margin-top: 4px;
+    margin-top: 0px;
 }
 
 .img-container img {
@@ -29,7 +29,7 @@
     right: 0;
     padding-left: 8px;
     padding-right: 8px;
-    padding-bottom: 4px;
+    padding-bottom: 2px;
     background-color: rgba(0, 0, 0, 0.5);
     margin: 0 !important;
 }

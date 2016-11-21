@@ -129,6 +129,20 @@ class Artist(db.Model):
             if t.language_code == lang_code:
                 t.about = value
 
+    @property
+    def full_name(self):
+        if self.name and self.nickname:
+            if self.name == self.nickname:
+                return self.name
+            else:
+                return self.name + ' aka ' + self.nickname
+        elif self.name:
+            return self.name
+        elif self.nickname:
+            return self.nickname
+        else:
+            return 'The girl has no name'
+
 
 class Language(db.Model):
     __tablename__ = 'languages'

@@ -1,9 +1,10 @@
-{% extends "bootstrap/base.html" %}
+{% extends "with_footer.html" %}
 
 {% block styles %}
     {{ super() }}
     <link rel="stylesheet" href="{{url_for('static', filename='css/common.css')}}">
     <link rel="stylesheet" href="{{url_for('static', filename='css/navbar.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/footer.css')}}">
 {%  endblock %}
 
 
@@ -73,8 +74,10 @@
     {% endif %}
 {% endblock %}
 
-{%  block content %}
+
+{%- block content %}
     {{ super() }}
+
     {#  Flashed messages #}
     {%  with messages = get_flashed_messages() %}
         {%  if messages %}
@@ -85,5 +88,14 @@
             {% endfor %}
         {% endif %}
     {%  endwith %}
-{% endblock %}
+
+{%- endblock content %}
+
+{#  Footer #}
+{%- block footer %}
+    {{ super() }}
+    {% include "common/footer.html" %}
+{%- endblock footer %}
+
+
 

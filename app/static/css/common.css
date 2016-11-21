@@ -8,3 +8,8 @@ body {
 .jumbotron {
     background-color: transparent !important;
 }
+
+.padding-15 {
+    padding-left: 15px !important;
+    padding-right: 15px !important;
+}

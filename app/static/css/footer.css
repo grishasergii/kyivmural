@@ -1,0 +1,15 @@
+.footer-line {
+    border-top: 1px solid #dfdfdf !important;
+    border-bottom: 1px solid #fff;
+    margin-top: 5px !important;
+    margin-bottom: 10px !important;
+}
+
+.footer a {
+    text-decoration: underline !important;
+    color: inherit;
+}
+
+.footer a:hover {
+    color: inherit;
+}
