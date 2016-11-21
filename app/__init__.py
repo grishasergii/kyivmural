@@ -1,4 +1,4 @@
-from flask import Flask, request, g, abort
+from flask import Flask, request, g, abort, render_template
 from flask import url_for as flask_url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -64,6 +64,10 @@ def create_app(config_name='default'):
                 abort(404)
             g.current_lang = request.view_args['lang_code']
             request.view_args.pop('lang_code')
+
+    @app.errorhandler(404)
+    def page_not_found(e):
+        return render_template('errors/404.html'), 404
 
     @app.context_processor
     def inject_url_for():
