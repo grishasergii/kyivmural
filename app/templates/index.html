@@ -67,7 +67,7 @@
             {% for m in random_murals %}
                 <div class="col-sm-3">
                     <a href="{{ url_for('main.mural', mural_id=m.id) }}">
-                        <div class="thumbnail no-margin" style="background-image: url('{{ url_for('static', filename='mural_img/' + m.photos[0].file_name) }}')">
+                        <div class="thumbnail no-margin" style="">
                         </div>
                     </a>
                 </div>
