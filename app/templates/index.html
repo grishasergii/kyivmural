@@ -16,6 +16,7 @@
             lng: 30.519516,
             zoom: 12
         });
+
         {% for mural in murals %}
             map.addMarker({
                 lat: {{ mural.lat }},
@@ -23,9 +24,17 @@
                 infoWindow: {
                     content:
                              '<p class="mural-title">{{ mural.get_address(get_locale()) }} <a href="{{ url_for('main.mural', mural_id=mural.id) }}"> {{ gettext('more') }}...</a></p>' +
-                             '<p><img src="{{ url_for('static', filename='mural_img/' + mural.photos[0].file_name) }}" class="img-info-window"></p>'
+                             '<p><img src="{{ url_for('static', filename='img/1x1.jpg') }}" class="img-info-window" id="lazy-{{ mural.id }}" data-src="{{ url_for('static', filename='mural_img/' + mural.photos[0].file_name) }}"></p>',
+                    domready: (function(img_id) {
+                        return function () {
+                            var lazy_img = document.getElementById(img_id);
+                            if (lazy_img) {
+                                lazy_img.src = lazy_img.getAttribute('data-src');
+                            }
+                        };
+                    })('lazy-{{ mural.id }}')
                 }
-            })
+            });
         {% endfor %}
     </script>
 {% endblock %}

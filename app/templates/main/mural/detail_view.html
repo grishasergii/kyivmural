@@ -53,25 +53,21 @@
 
     <div class="container">
         <div class="row">
-            <!--  col-md-offset-2 -->
+
             <div class="col-md-9">
-                {% for artist in mural.artists %}
-                    <a href="{{ url_for('main.artist', id=artist.id) }}">{{ artist.full_name }}</a>
+                {% for photo in mural.photos %}
+                    <div class="row padding-15">
+                    <div class="img-container">
+                        <img src="{{ url_for('static', filename='mural_img/' + photo.file_name) }}" class="img-responsive center-block">
+                    {% if photo.has_copyright %}
+                        <p class="img-copyright"><small>{{ photo.copyright_string }}</small></p>
+                    {% endif %}
+                    </div>
+                    </div>
+                    <br>
                 {% endfor %}
-
-            {% for photo in mural.photos %}
-                <div class="row padding-15">
-                <div class="img-container">
-                    <img src="{{ url_for('static', filename='mural_img/' + photo.file_name) }}" class="img-responsive center-block">
-                {% if photo.has_copyright %}
-                    <p class="img-copyright"><small>{{ photo.copyright_string }}</small></p>
-                {% endif %}
-                </div>
-                </div>
-                <br>
-            {% endfor %}
-
             </div>
+
             <div class="col-md-3 ">
                 <div class="row padding-15">
                     <div class="panel panel-default">
@@ -91,6 +87,22 @@
                             </p>
                         </div>
                     </div>
+
+                    {% if mural.artists|length > 0 %}
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">{{ gettext('Artist') }} </h3>
+                            </div>
+                            <div class="panel-body">
+                                {% for artist in mural.artists %}
+                                    <p>
+                                        <a href="{{ url_for('main.artist', id=artist.id) }}">{{ artist.full_name }}</a>
+                                    </p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    {% endif %}
+
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             <h3 class="panel-title">{{ gettext('Share') }} </h3>
