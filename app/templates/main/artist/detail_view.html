@@ -11,6 +11,33 @@
         <div class="row">
             <div class="col-md-12">
                 <h1>{{ artist.full_name }}</h1>
+                {% if artist.url %}
+                    <p>
+                        <a href="{{ artist.url }}">{{ artist.url }}</a>
+                    </p>
+                {% endif %}
+
+                {% set artist_about = artist.get_about(get_locale()) %}
+                {% if artist_about %}
+                    <p>
+                        {{ artist_about }}
+                    </p>
+                {% endif %}
+
+                <h3>Murals by {{ artist.short_name }}:</h3>
+                {% for mural in artist.murals %}
+                    <div class="row padding-15">
+                        <div class="img-container">
+                            <a href="{{ url_for('main.mural', mural_id=mural.id) }}">
+                                <img src="{{ url_for('static', filename='mural_img/' + mural.photos[0].file_name) }}" class="img-responsive center-block">
+                            </a>
+                            {% if mural.photos[0].has_copyright %}
+                                <p class="img-copyright"><small>{{ mural.photos[0].copyright_string }}</small></p>
+                            {% endif %}
+                        </div>
+                    </div>
+                    <br>
+                {% endfor %}
             </div>
         </div>
     </div>

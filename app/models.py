@@ -118,16 +118,26 @@ class Artist(db.Model):
     def __repr__(self):
         return '<Artist %r aka %r id %d>' % (self.name, self.nickname, self.id)
 
+    def get_translation(self, lang_code):
+        for t in self.translations:
+            if t.language_code == lang_code:
+                return t
+
+        translation = ArtistTranslation()
+        translation.artist_id = self.id
+        translation.language_code = lang_code
+        db.session.add(translation)
+        return translation
+
     def get_about(self, lang_code):
         for t in self.translations:
             if t.language_code == lang_code:
                 return t.about
-        return 'n/a'
+        return ''
 
     def set_about(self, value, lang_code):
-        for t in self.translations:
-            if t.language_code == lang_code:
-                t.about = value
+        translation = self.get_translation(lang_code)
+        translation.about = value
 
     @property
     def full_name(self):
@@ -142,6 +152,14 @@ class Artist(db.Model):
             return self.nickname
         else:
             return 'The girl has no name'
+
+    @property
+    def short_name(self):
+        if self.nickname:
+            return self.nickname
+        if self.name:
+            return self.name
+        return 'Noname'
 
 
 class Language(db.Model):
