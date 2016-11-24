@@ -30,7 +30,7 @@
             <div class="collapse navbar-collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
                     <li><a href="#">{{ _('Murals') }}</a></li>
-                    <li><a href="#">{{ _('Artists') }}</a></li>
+                    <li><a href="{{ url_for('main.artists') }}">{{ _('Artists') }}</a></li>
                     <li><a href="#">{{ _('About') }}</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -58,7 +58,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="{{ url_for('main.root') }}">Admin area</a>
+                    <a class="navbar-brand" href="{{ url_for('main.index') }}">Admin area</a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="navbar_admin">
@@ -72,6 +72,15 @@
             </div>
         </nav>
     {% endif %}
+
+    <noscript>
+        <div class="container">
+            <div class="alert alert-danger">
+                For full functionality of this site it is necessary to enable JavaScript.
+                Here are the <a class="alert-link" href="http://www.enable-javascript.com/" target="_blank"> instructions how to enable JavaScript in your web browser</a>.
+            </div>
+        </div>
+    </noscript>
 {% endblock %}
 
 

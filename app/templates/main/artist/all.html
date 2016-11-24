@@ -1,0 +1,30 @@
+{%  extends "base.html" %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/mural_detail_view.css')}}">
+{%  endblock %}
+
+{% block title %}
+    {{ gettext('Artists') }}
+{%  endblock %}
+
+{%  block content %}
+    <div class="container">
+        <h1>
+            {{ gettext('Artists') }}
+        </h1>
+        <br>
+
+        <ul class="list-group">
+            {% for artist in artists %}
+                <a href="{{ url_for('main.artist', id=artist.id) }}" class="list-group-item">
+                    <span class="badge">
+                        {{ artist.murals|length }}
+                    </span>
+                    {{ artist.full_name }}
+                </a>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}

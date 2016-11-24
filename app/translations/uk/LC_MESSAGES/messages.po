@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-10-30 18:37+0100\n"
+"POT-Creation-Date: 2016-11-24 23:19+0100\n"
 "PO-Revision-Date: 2016-10-30 18:46+0100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language: uk\n"
@@ -19,23 +19,52 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: app/templates/base.html:25
+#: app/templates/base.html:27
 msgid "Kyivmural"
 msgstr "Київмурал"
 
-#: app/templates/base.html:30
+#: app/templates/base.html:32
 msgid "Murals"
 msgstr "Мурали"
 
-#: app/templates/base.html:31
+#: app/templates/base.html:33 app/templates/main/artist/all.html:9
+#: app/templates/main/artist/all.html:15
 msgid "Artists"
 msgstr "Художники"
 
-#: app/templates/base.html:32
+#: app/templates/base.html:34
 msgid "About"
 msgstr "Про нас"
 
-#: app/templates/index.html:25
+#: app/templates/index.html:26
 msgid "more"
 msgstr "детальніше"
+
+#: app/templates/index.html:65
+msgid "mural_definition"
+msgstr "Стінопис або мурал — різновид монументального і декоративного малярства, що виконувалося безпосередньо на стіні або на штукатурці, закріпленій на стіні, в якому фігуративні образи й декоративні орнаменти підпорядковуються архітектурним формам."
+
+#: app/templates/index.html:68
+msgid "mural_definition_link"
+msgstr "https://uk.wikipedia.org/wiki/%%D0%%A1%%D1%%82%%D1%%96%%D0%%BD%%D0%%BE%%D0%%BF%%D0%%B8%%D1%%81"
+
+#: app/templates/index.html:68
+msgid "Wikipedia"
+msgstr "Вікіпедія"
+
+#: app/templates/main/mural/detail_view.html:75
+msgid "Location"
+msgstr "Місцезнаходження"
+
+#: app/templates/main/mural/detail_view.html:94
+msgid "Artist"
+msgstr "Художник"
+
+#: app/templates/main/mural/detail_view.html:108
+msgid "Share"
+msgstr ""
+
+#: app/templates/main/mural/detail_view.html:126
+msgid "Admin area"
+msgstr ""
 

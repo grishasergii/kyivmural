@@ -1,7 +1,3 @@
-.navbar {
-    margin-bottom: 0 !important;
-}
-
 .with-background {
     background-color: gainsboro;
 }
@@ -66,4 +62,17 @@
 
 .mural-title a {
     text-decoration: underline !important;
+}
+
+.container-map {
+    margin-top: -20px;
+}
+
+.mural-quote blockquote{
+    font-size: inherit !important;
+    background-color: #fefefe;
+}
+
+.mural-quote blockquote footer {
+    font-size: 100% !important;
 }

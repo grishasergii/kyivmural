@@ -42,7 +42,7 @@
 {%  block content %}
     {{ super() }}
 
-    <div class="container-fluid">
+    <div class="container-fluid container-map">
         <div class="row">
             <div id="map" style="width: 100%; height: 500px"></div>
         </div>
@@ -56,6 +56,18 @@
         <p>
             There are {{ mural_count }} murals and {{ artist_count }} artists featured right now.
         </p>
+    </div>
+
+    <div class="container mural-quote">
+        <h2>What the hack is mural?</h2>
+        <blockquote>
+            <p>
+                {{ gettext('mural_definition') }}
+            </p>
+            <footer>
+                <a href="{{ gettext('mural_definition_link') }}">{{ gettext('Wikipedia') }}</a>
+            </footer>
+        </blockquote>
     </div>
 
     <div class="container">

@@ -6,6 +6,7 @@
 .navbar-admin {
     background-color: #5a0005;
     border-color: #5a0005;
+    margin-top: -20px;
 }
 
 .navbar-admin li a, .navbar-admin .navbar-brand {
