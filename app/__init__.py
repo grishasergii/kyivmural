@@ -1,4 +1,4 @@
-from flask import Flask, request, g, abort, render_template
+from flask import Flask, request, g, abort, render_template, redirect, url_for
 from flask import url_for as flask_url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
@@ -46,10 +46,10 @@ def create_app(config_name='default'):
     app.register_blueprint(main_blueprint)
 
     from auth import auth as auth_blueprint
-    app.register_blueprint(auth_blueprint, url_prefix='/<lang_code>/auth')
+    app.register_blueprint(auth_blueprint)
 
     from admin import admin as admin_blueprint
-    app.register_blueprint(admin_blueprint, url_prefix='/<lang_code>/admin')
+    app.register_blueprint(admin_blueprint)
 
     with app.app_context():
         db.create_all()
@@ -57,27 +57,13 @@ def create_app(config_name='default'):
     if not os.path.exists(app.config['MURAL_IMG_FOLDER']):
         os.makedirs(app.config['MURAL_IMG_FOLDER'])
 
-    @app.before_request
-    def before():
-        if request.view_args and 'lang_code' in request.view_args:
-            if request.view_args['lang_code'] not in app.config['LANGUAGES']:
-                abort(404)
-            g.current_lang = request.view_args['lang_code']
-            request.view_args.pop('lang_code')
+    @app.route('/')
+    def root():
+        return redirect(url_for('main.root'))
 
     @app.errorhandler(404)
     def page_not_found(e):
         return render_template('errors/404.html'), 404
-
-    @app.context_processor
-    def inject_url_for():
-        return {
-            'url_for': lambda endpoint, **kwargs: flask_url_for(
-                endpoint, lang_code=g.get('current_lang', 'uk'), **kwargs
-            )
-        }
-
-    url_for = inject_url_for()['url_for']
 
     return app
 

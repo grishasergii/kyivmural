@@ -38,7 +38,7 @@ def mural_update(id):
     if 'save_mural_button' in request.form:
         if form.validate_on_submit():
             save_mural_from_form(mural, form, languages)
-            return redirect(url_for('admin.murals', lang_code=g.get('current_lang', 'uk')))
+            return redirect(url_for('admin.murals'))
 
     form.lat.data = mural.lat
     form.lng.data = mural.lng
@@ -64,7 +64,7 @@ def mural_update(id):
                            photos=mural.photos)
 
     db.session.commit()
-    return redirect(url_for('admin.artists', lang_code=g.get('current_lang', 'uk')))
+    return redirect(url_for('admin.artists'))
 
 
 @admin.route('/mural/new', methods=['GET', 'POST'])
@@ -162,7 +162,7 @@ def artist_update(id):
                 if field:
                     artist.set_about(field.data, lang.code)
             db.session.commit()
-            return redirect(url_for('admin.artists', lang_code=g.get('current_lang', 'uk')))
+            return redirect(url_for('admin.artists'))
 
     form.name.data = artist.name
     form.nickname.data = artist.nickname
@@ -177,7 +177,7 @@ def artist_update(id):
                            languages=languages)
 
     db.session.commit()
-    return redirect(url_for('admin.artists', lang_code=g.get('current_lang', 'uk')))
+    return redirect(url_for('admin.artists'))
 
 
 @admin.route('/artist/new', methods=['GET', 'POST'])
@@ -217,7 +217,7 @@ def import_csv():
     if form.validate_on_submit():
         csv_file = request.files['csv_file']
         import_from_csv(csv_file)
-        return redirect(url_for('admin.murals', lang_code=g.get('current_lang', 'uk')))
+        return redirect(url_for('admin.murals'))
 
     return render_template('admin/import_csv/form.html',
                            title='Import Recirds from csv',

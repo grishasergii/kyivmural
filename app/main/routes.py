@@ -7,11 +7,10 @@ import random
 
 @main.route('/')
 def root():
-    return redirect(url_for('main.index',
-                            lang_code=g.get('current_lang', 'uk')))
+    return redirect(url_for('main.index'))
 
 
-@main.route('/<lang_code>/index')
+@main.route('/index')
 def index():
     murals = Mural.query.all()
     mural_count = len(murals)
@@ -25,7 +24,7 @@ def index():
                            artist_count=artist_count)
 
 
-@main.route('/<lang_code>/mural/<int:mural_id>')
+@main.route('/mural/<int:mural_id>')
 def mural(mural_id):
     mural = Mural.query.get(mural_id)
     if mural:
@@ -35,7 +34,7 @@ def mural(mural_id):
         abort(404)
 
 
-@main.route('/<lang_code>/artist/<int:id>')
+@main.route('/artist/<int:id>')
 def artist(id):
     artist = Artist.query.get(id)
     if mural:
