@@ -58,8 +58,8 @@ def create_app(config_name='default'):
         os.makedirs(app.config['MURAL_IMG_FOLDER'])
 
     @app.route('/')
-    def root():
-        return redirect(url_for('main.root'))
+    def index():
+        return redirect(url_for('main.index', lang_code=g.get('current_lang', 'uk')))
 
     @app.errorhandler(404)
     def page_not_found(e):

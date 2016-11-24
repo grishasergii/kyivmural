@@ -3,11 +3,7 @@ from . import main
 from ..models import Mural, Artist
 from .. import config
 import random
-
-
-@main.route('/')
-def root():
-    return redirect(url_for('main.index'))
+from gettext import gettext
 
 
 @main.route('/index')
@@ -42,3 +38,10 @@ def artist(id):
                                artist=artist)
     else:
         abort(404)
+
+
+@main.route('/artists')
+def artists():
+    artists = Artist.query.all()
+    return render_template('main/artist/all.html',
+                           artists=artists)

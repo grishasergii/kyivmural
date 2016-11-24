@@ -14,7 +14,7 @@ def login():
         if user is not None:
             if user.verify_password(form.password.data):
                 login_user(user, remember=form.remember_me.data)
-                return redirect(request.args.get('next') or url_for('main.root'))
+                return redirect(request.args.get('next') or url_for('main.index'))
             # flash('Invalid password.')
             form.password.errors.append('Wrong password')
         else:
