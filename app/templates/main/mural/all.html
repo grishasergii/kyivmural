@@ -1,0 +1,38 @@
+{%  extends "base.html" %}
+
+{% import "main/mural/macros.html" as macros %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/thumbnails.css')}}">
+{%  endblock %}
+
+{% block title %}
+    {{ gettext('Murals') }}
+{%  endblock %}
+
+{%  block content %}
+    <div class="container">
+        <h1>
+            {{ gettext('Murals') }}
+        </h1>
+        <br>
+
+        {% for murals_chunk in murals|batch(3) %}
+            <div class="row with-margin">
+                {% for mural in murals_chunk %}
+                    <div class="col-sm-4">
+                        <a href="{{ url_for('main.mural', mural_id=mural.id) }}">
+                            <div class="thumbnail no-margin" style="background-image: url('{{ url_for('static', filename='mural_img/' + mural.photos[0].file_name) }}')">
+                            </div>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endfor %}
+
+        <div class="text-center">
+            {{ macros.pagination_widget(pagination, 'main.murals') }}
+        </div>
+    </div>
+{% endblock %}

@@ -3,7 +3,7 @@ from . import main
 from ..models import Mural, Artist
 from .. import config
 import random
-from gettext import gettext
+from run import app
 
 
 @main.route('/index')
@@ -30,6 +30,16 @@ def mural(mural_id):
         abort(404)
 
 
+@main.route('/murals')
+@main.route('/murals/<int:page>')
+def murals(page=1):
+    pagination = Mural.query.paginate(page, per_page=app.config['MURALS_PER_PAGE'], error_out=False)
+    murals = pagination.items
+    return render_template('main/mural/all.html',
+                           murals=murals,
+                           pagination=pagination)
+
+
 @main.route('/artist/<int:id>')
 def artist(id):
     artist = Artist.query.get(id)
@@ -45,3 +55,8 @@ def artists():
     artists = Artist.query.all()
     return render_template('main/artist/all.html',
                            artists=artists)
+
+
+@main.route('/about')
+def about():
+    return render_template('main/about/about.html')

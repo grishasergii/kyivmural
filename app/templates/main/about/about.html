@@ -1,0 +1,44 @@
+{%  extends "base.html" %}
+
+{% block styles %}
+    {{ super() }}
+    <link rel="stylesheet" href="{{url_for('static', filename='css/about.css')}}">
+{%  endblock %}
+
+{% block title %}
+    {{ gettext('About') }}
+{%  endblock %}
+
+{%  block content %}
+    <div class="container">
+        <h1>
+            {{ gettext('About') }}
+        </h1>
+        <br>
+
+        <p class="mural-quote">
+            <span class="question">
+                {{ gettext('What is a mural?') }}
+            </span><br>
+            {{ gettext('mural_definition') }} &#8212; <a href="{{ gettext('mural_definition_link') }}">{{ gettext('Wikipedia') }}</a>
+        </p>
+        <p>
+            <span class="question">
+                Ми шукаємо художника. Ви можете порекомендувати когось?
+            </span><br>
+            Ні, я не можу нікого порекомендувати, тому що не маю жодного художника серед своїх знайомих.
+        </p>
+        <p>
+            <span class="question">
+                Я художник та хочу намалювати мурал.
+            </span><br>
+            Це добре. З огляду на те, що мені періодично надходять листи з проханням порекомендувати когось, на це є попит, тому ти маєш всі шанси реалізувати свож бажання.
+        </p>
+        <p>
+            <span class="question">
+                Як з'являються нові мурали?
+            </span><br>
+            Я не знаю. Чесно!
+        </p>
+    </div>
+{% endblock %}

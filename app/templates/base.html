@@ -29,9 +29,9 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="navbar-main">
                 <ul class="nav navbar-nav">
-                    <li><a href="#">{{ _('Murals') }}</a></li>
+                    <li><a href="{{ url_for('main.murals') }}">{{ _('Murals') }}</a></li>
                     <li><a href="{{ url_for('main.artists') }}">{{ _('Artists') }}</a></li>
-                    <li><a href="#">{{ _('About') }}</a></li>
+                    <li><a href="{{ url_for('main.about') }}">{{ _('About') }}</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li>

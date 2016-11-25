@@ -34,7 +34,7 @@ msgstr "Художники"
 
 #: app/templates/base.html:34
 msgid "About"
-msgstr "Про нас"
+msgstr "Про проект"
 
 #: app/templates/index.html:26
 msgid "more"

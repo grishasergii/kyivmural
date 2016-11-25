@@ -1,0 +1,17 @@
+.thumbnail {
+    border: none !important;
+    height: 250px !important;
+    /* overflow: hidden; */
+    padding: 0 !important;
+    border-radius: 0 !important;
+    background-position: center center !important;
+    background-repeat: no-repeat !important;
+    background-size: cover !important;
+    overflow: hidden;
+    margin-bottom: 1em !important;
+}
+
+.thumbnail img {
+    object-fit: cover !important; /* Do not scale the image */
+    /* object-position: center; /* Center the image within the element */
+}

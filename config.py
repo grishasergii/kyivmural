@@ -9,6 +9,7 @@ class Config:
     DEBUG = False
     MURAL_IMG_FOLDER = os.path.join(basedir, 'app', 'static', 'mural_img')
     ALLOWED_EXTENSIONS = set(['jpg', 'jpeg', 'JPEG', 'png'])
+    MURALS_PER_PAGE = 9
     LANGUAGES = {
         'en': 'English',
         'uk': 'Ukraininan'

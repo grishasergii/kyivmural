@@ -13,3 +13,21 @@ body {
     padding-left: 15px !important;
     padding-right: 15px !important;
 }
+
+.with-margin {
+    margin-top: 1em !important;
+    margin-bottom: 1em !important;
+}
+
+.padding-5 {
+    padding-left: 5px !important;
+    padding-right: 5px !important;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.no-padding {
+    padding: 0 !important;
+}
