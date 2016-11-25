@@ -3,7 +3,6 @@ from . import main
 from ..models import Mural, Artist
 from .. import config
 import random
-from run import app
 
 
 @main.route('/index')
@@ -33,7 +32,7 @@ def mural(mural_id):
 @main.route('/murals')
 @main.route('/murals/<int:page>')
 def murals(page=1):
-    pagination = Mural.query.paginate(page, per_page=app.config['MURALS_PER_PAGE'], error_out=False)
+    pagination = Mural.query.paginate(page, per_page=9, error_out=False)
     murals = pagination.items
     return render_template('main/mural/all.html',
                            murals=murals,
