@@ -5,17 +5,25 @@
     <link rel="stylesheet" href="{{url_for('static', filename='css/about.css')}}">
 {%  endblock %}
 
+{% block scripts %}
+    {{ super() }}
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+{% endblock %}
+
 {% block title %}
     {{ gettext('About') }}
 {%  endblock %}
 
 {%  block content %}
     <div class="container">
-        <h1>
-            {{ gettext('About') }}
-        </h1>
-        <br>
+        <p class="lead">
+            <strong>{{ _('Kyivmural') }}</strong> &#8212; каталог київських муралів. Це спроба зібрати в одному місці
+            інформацію про стінописи в Києві.
+        </p>
 
+        <span class="lead">
+            <strong>{{ _('FAQ') }}</strong>
+        </span>
         <p class="mural-quote">
             <span class="question">
                 {{ gettext('What is a mural?') }}
@@ -34,11 +42,14 @@
             </span><br>
             Це добре. З огляду на те, що мені періодично надходять листи з проханням порекомендувати когось, на це є попит, тому ти маєш всі шанси реалізувати свож бажання.
         </p>
-        <p>
+        <p class="inline">
             <span class="question">
-                Як з'являються нові мурали?
+                Я хочу долучитися до проекту.
             </span><br>
-            Я не знаю. Чесно!
+            Долучитися дуже просто
+            <a href="http://flask.pocoo.org/">Flask</a>
+            <a href="http://getbootstrap.com/">Bootstrap</a>
+            <a href="https://github.com/grishasergei/kyivmural/fork" class="btn btn-default btn-xs" role="button"><strong>Fork on GitHub</strong></a>
         </p>
     </div>
 {% endblock %}
