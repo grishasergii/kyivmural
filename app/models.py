@@ -6,6 +6,7 @@ import os
 from config import Config
 from flask import Markup
 from urlparse import urlparse
+from flask_babel import gettext
 
 
 @login_manager.user_loader
@@ -99,10 +100,10 @@ class MuralPhoto(db.Model):
     def copyright_string(self):
         result = ''
         if self.copyright_name:
-            result = 'Photo by ' + self.copyright_name
+            result = gettext('photo') + ': ' + self.copyright_name
         if self.copyright_url:
             parsed_url = urlparse(self.copyright_url)
-            result += ' source: <a href="{}">{}</a>'.format(self.copyright_url, parsed_url.netloc)
+            result += gettext('photo') + ': <a href="{}">{}</a>'.format(self.copyright_url, parsed_url.netloc)
         return Markup(result)
 
 

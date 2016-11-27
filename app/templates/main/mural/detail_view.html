@@ -53,8 +53,21 @@
 
     <div class="container">
         <div class="row">
-
             <div class="col-md-9">
+                <!-- Mural description -->
+                {% set mural_name = mural.get_name(get_locale()) %}
+                {% if mural_name %}
+                    <h1 class="no-top-margin">{{ mural_name }}</h1>
+                {% endif %}
+
+                {% set mural_description = mural.get_description(get_locale()) %}
+                {% if mural_description %}
+                    <p class="lead text-justify">
+                        {{ mural_description }}
+                    </p>
+                {% endif %}
+
+                <!-- Mural photos -->
                 {% for photo in mural.photos %}
                     <div class="row padding-15">
                     <div class="img-container">
@@ -95,9 +108,7 @@
                             </div>
                             <div class="panel-body">
                                 {% for artist in mural.artists %}
-                                    <p>
-                                        <a href="{{ url_for('main.artist', id=artist.id) }}">{{ artist.full_name }}</a>
-                                    </p>
+                                    <a href="{{ url_for('main.artist', id=artist.id) }}" class="btn btn-primary btn-block" role="button">{{ artist.full_name }}</a>
                                 {% endfor %}
                             </div>
                         </div>
@@ -105,11 +116,10 @@
 
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{{ gettext('Share') }} </h3>
+                            <h3 class="panel-title">{{ gettext('Be social') }} </h3>
                         </div>
                         <div class="panel-body">
                             <p>
-
                                 <div class="fb-share-button" data-href="{{ request.url }}" data-layout="button_count" data-size="large" data-mobile-iframe="true">
                                     <a class="fb-xfbml-parse-ignore" target="_blank" href="{{ request.url }}">Share</a>
                                 </div>

@@ -31,3 +31,11 @@ body {
 .no-padding {
     padding: 0 !important;
 }
+
+.text-justify {
+    text-align: justify;
+}
+
+.no-top-margin {
+    margin-top: 0 !important;
+}

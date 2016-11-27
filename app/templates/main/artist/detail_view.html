@@ -3,39 +3,45 @@
 {% block styles %}
     {{ super() }}
     <link rel="stylesheet" href="{{url_for('static', filename='css/mural_detail_view.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/artist_detail_view.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='css/thumbnails.css')}}">
 {%  endblock %}
 
 {%  block content %}
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>{{ artist.full_name }}</h1>
-                {% if artist.url %}
-                    <p>
-                        <a href="{{ artist.url }}">{{ artist.url }}</a>
-                    </p>
-                {% endif %}
+                <h1 class="no-top-margin">
+                    {{ artist.full_name }}
+                    {% if artist.url %}
+                        <span class="badge badge-artist-url"><a href="{{ artist.url }}">{{ _('artist\'s website') }}</a></span>
+                    {% endif %}
+                </h1>
 
                 {% set artist_about = artist.get_about(get_locale()) %}
                 {% if artist_about %}
-                    <p>
+                    <p class="lead text-justify">
                         {{ artist_about }}
                     </p>
                 {% endif %}
 
-                <h2>Discover murals by {{ artist.short_name }}:</h2>
-                {% for mural in artist.murals %}
-                    <div class="row padding-15">
-                        <div class="img-container">
-                            <a href="{{ url_for('main.mural', mural_id=mural.id) }}">
-                                <img src="{{ url_for('static', filename='mural_img/' + mural.photos[0].file_name) }}" class="img-responsive center-block">
-                            </a>
-                            {% if mural.photos[0].has_copyright %}
-                                <p class="img-copyright"><small>{{ mural.photos[0].copyright_string }}</small></p>
-                            {% endif %}
-                        </div>
+                {% for murals_chunk in artist.murals|batch(3) %}
+                    <div class="row with-margin">
+                        {% for mural in murals_chunk %}
+                            <div class="col-sm-4">
+                                <a href="{{ url_for('main.mural', mural_id=mural.id) }}">
+                                    {% set mural_name = mural.get_name(get_locale()) %}
+                                    {% if mural_name %}
+                                        {{ mural_name }}
+                                    {% else %}
+                                        &#8203;
+                                    {% endif %}
+                                    <div class="thumbnail no-margin" style="background-image: url('{{ url_for('static', filename='mural_img/' + mural.photos[0].file_name) }}')">
+                                    </div>
+                                </a>
+                            </div>
+                        {% endfor %}
                     </div>
-                    <br>
                 {% endfor %}
             </div>
         </div>
