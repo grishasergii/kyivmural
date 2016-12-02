@@ -14,14 +14,14 @@
                 <h1 class="no-top-margin">
                     {{ artist.full_name }}
                     {% if artist.url %}
-                        <span class="badge badge-artist-url"><a href="{{ artist.url }}">{{ _('artist\'s website') }}</a></span>
+                        <span class="badge badge-artist-url"><a href="{{ artist.url }}">{{ artist.url.rpartition("//")[-1].partition("/")[0] }}</a></span>
                     {% endif %}
                 </h1>
 
                 {% set artist_about = artist.get_about(get_locale()) %}
                 {% if artist_about %}
                     <p class="lead text-justify">
-                        {{ artist_about }}
+                        {{ artist_about|safe }}
                     </p>
                 {% endif %}
 

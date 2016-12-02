@@ -24,6 +24,7 @@
                         {% endfor %}
                         <th></th>
                         <th></th>
+                        <th></th>
                     </tr>
                 </thead>
                 <tbody>
@@ -34,16 +35,19 @@
                         <td>{{ artist.nickname }}</td>
                         <td>{{ artist.url }}</td>
                         {% for lang in languages %}
-                            <td>{{ artist.get_about(lang.code) }}</td>
+                            <td>{{ artist.get_about(lang.code)|truncate(100) }}</td>
                         {% endfor %}
                         <td>
-                            <form action="{{ url_for('admin.artist_delete', id=artist.id) }}" method="post">
-                                <button type="submit" class="btn btn-danger btn-xs">Delete</button>
-                            </form>
+                            <a href="{{ url_for('main.artist', id=artist.id) }}" role="button" class="btn btn-success btn-xs">View</a>
                         </td>
                         <td>
                             <form action="{{ url_for('admin.artist_update', id=artist.id) }}" method="post">
                                 <button type="submit" name="edit_form_button" class="btn btn-primary btn-xs">Edit</button>
+                            </form>
+                        </td>
+                        <td>
+                            <form action="{{ url_for('admin.artist_delete', id=artist.id) }}" method="post">
+                                <button type="submit" class="btn btn-danger btn-xs">Delete</button>
                             </form>
                         </td>
                     </tr>
