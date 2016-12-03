@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PROJECT VERSION\n"
 "Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
-"POT-Creation-Date: 2016-11-24 23:19+0100\n"
+"POT-Creation-Date: 2016-12-03 11:50+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,16 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.3.4\n"
 
-#: app/templates/base.html:27
+#: app/models.py:103 app/models.py:106
+msgid "photo"
+msgstr ""
+
+#: app/templates/base.html:27 app/templates/main/about/about.html:20
 msgid "Kyivmural"
 msgstr ""
 
-#: app/templates/base.html:32
+#: app/templates/base.html:32 app/templates/main/mural/all.html:11
+#: app/templates/main/mural/all.html:17
 msgid "Murals"
 msgstr ""
 
@@ -30,39 +35,134 @@ msgstr ""
 msgid "Artists"
 msgstr ""
 
-#: app/templates/base.html:34
+#: app/templates/base.html:34 app/templates/main/about/about.html:14
 msgid "About"
 msgstr ""
 
-#: app/templates/index.html:26
+#: app/templates/base.html:61 app/templates/main/mural/detail_view.html:136
+msgid "Admin area"
+msgstr ""
+
+#: app/templates/index.html:27
 msgid "more"
 msgstr ""
 
-#: app/templates/index.html:65
+#: app/templates/index.html:53
+msgid "The Murals of Kyiv"
+msgstr ""
+
+#: app/templates/index.html:55
+msgid "introduction_paragraph"
+msgstr ""
+
+#: app/templates/index.html:55
+msgid "Kyivmural presents"
+msgstr ""
+
+#: app/templates/index.html:55
+msgid "artworks"
+msgstr ""
+
+#: app/templates/index.html:55
+msgid "and"
+msgstr ""
+
+#: app/templates/index.html:55
+msgid "artists"
+msgstr ""
+
+#: app/templates/index.html:60
+msgid "Discover"
+msgstr ""
+
+#: app/templates/index.html:62
+msgid ""
+"Discover four randomly selected artworks. Refresh the page to get new "
+"suggestions"
+msgstr ""
+
+#: app/templates/main/about/about.html:20
+msgid "kyivmural_definition"
+msgstr ""
+
+#: app/templates/main/about/about.html:23
+msgid "contact_me_paragraph_1"
+msgstr ""
+
+#: app/templates/main/about/about.html:24
+msgid "contact_me_paragraph_2"
+msgstr ""
+
+#: app/templates/main/about/about.html:27
+msgid "reference_statement"
+msgstr ""
+
+#: app/templates/main/about/about.html:30
+msgid "FAQ"
+msgstr ""
+
+#: app/templates/main/about/about.html:34
+msgid "What is a mural?"
+msgstr ""
+
+#: app/templates/main/about/about.html:36
 msgid "mural_definition"
 msgstr ""
 
-#: app/templates/index.html:68
+#: app/templates/main/about/about.html:36
 msgid "mural_definition_link"
 msgstr ""
 
-#: app/templates/index.html:68
+#: app/templates/main/about/about.html:36
 msgid "Wikipedia"
 msgstr ""
 
-#: app/templates/main/mural/detail_view.html:75
+#: app/templates/main/about/about.html:40
+msgid ""
+"I am looking for an artist to commission a wall mural. Can you recommend "
+"someone?"
+msgstr ""
+
+#: app/templates/main/about/about.html:42
+msgid ""
+"Unfortunately I do not have any suggestions because there are no artists "
+"in my personal network"
+msgstr ""
+
+#: app/templates/main/about/about.html:46
+msgid "I am an artist and I would like to paint a wall mural"
+msgstr ""
+
+#: app/templates/main/about/about.html:48
+msgid ""
+"From time to time I receive requests for a referral, so there is some "
+"demand for artists. I suggest that you to promote yourself more so your "
+"potential customers can reach you"
+msgstr ""
+
+#: app/templates/main/about/about.html:52
+msgid "I would like to contribute"
+msgstr ""
+
+#: app/templates/main/about/about.html:54
+msgid ""
+"Great! If you are a web developer, then start with forking Kyivmural on "
+"GitHub"
+msgstr ""
+
+#: app/templates/main/about/about.html:56
+msgid "I am looking forward to hear from you"
+msgstr ""
+
+#: app/templates/main/mural/detail_view.html:88
 msgid "Location"
 msgstr ""
 
-#: app/templates/main/mural/detail_view.html:94
+#: app/templates/main/mural/detail_view.html:107
 msgid "Artist"
 msgstr ""
 
-#: app/templates/main/mural/detail_view.html:108
-msgid "Share"
-msgstr ""
-
-#: app/templates/main/mural/detail_view.html:126
-msgid "Admin area"
+#: app/templates/main/mural/detail_view.html:119
+msgid "Be social"
 msgstr ""
 

@@ -50,19 +50,16 @@
     </div>
 
     <div class="container">
-        <h2>Мурали Києва</h2>
-        <p>
-            Explore murals on streets of Kyiv. Starting from 2014 fantastic murals began to decorate narrow lanes and wide avenues in different parts of the city. 30+ walls have been decorated since that time by international street artists and more to expect. Mural fever is here to stay and it puts Kyiv on international street art map.
-        </p>
-        <p>
-            There are {{ mural_count }} murals and {{ artist_count }} artists featured right now.
+        <h2>{{ _("The Murals of Kyiv") }}</h2>
+        <p class="lead">
+            {{ _("introduction_paragraph") }}. {{ _("Kyivmural presents") }} {{ mural_count }} {{ _("artworks") }} {{ _("and") }} {{ artist_count }} {{ _("artists") }}.
         </p>
     </div>
 
     <div class="container">
-        <h2>Discover</h2>
-        <p>
-            Random
+        <h2>{{ _("Discover") }}</h2>
+        <p class="lead">
+            {{ _("Discover four randomly selected artworks. Refresh the page to get new suggestions") }}.
         </p>
         <div class="row with-margin">
             {% for m in random_murals %}

@@ -17,10 +17,15 @@
 {%  block content %}
     <div class="container">
         <p class="lead">
-            <strong>{{ _('Kyivmural') }}</strong> &#8212; каталог київських муралів. Це спроба зібрати в одному місці
-            інформацію про стінописи в Києві, їх місцезнаходження та авторів.
+            <strong>{{ _('Kyivmural') }}</strong> {{ _("kyivmural_definition") }}.
         </p>
-
+        <p class="lead">
+            {{ _("contact_me_paragraph_1") }} <a href="mailto:#">sergii@sergii.se</a>.
+            {{ _("contact_me_paragraph_2") }}
+        </p>
+        <p class="lead">
+            {{ _("reference_statement") }}.
+        </p>
         <span class="lead">
             <strong>{{ _('FAQ') }}</strong>
         </span>
@@ -28,28 +33,27 @@
             <span class="question">
                 {{ gettext('What is a mural?') }}
             </span><br>
-            {{ gettext('mural_definition') }} &#8212; <a href="{{ gettext('mural_definition_link') }}">{{ gettext('Wikipedia') }}</a>
+            {{ gettext('mural_definition') }} &#8212; <a href="{{ gettext('mural_definition_link') }}">{{ gettext('Wikipedia') }}</a>.
         </p>
         <p>
             <span class="question">
-                Ми шукаємо художника. Ви можете порекомендувати когось?
+                {{ _("I am looking for an artist to commission a wall mural. Can you recommend someone?") }}
             </span><br>
-            Ні, я не можу нікого порекомендувати, тому що не маю жодного художника серед своїх знайомих.
+            {{ _("Unfortunately I do not have any suggestions because there are no artists in my personal network") }}.
         </p>
         <p>
             <span class="question">
-                Я художник та хочу намалювати мурал.
+                {{ _("I am an artist and I would like to paint a wall mural") }}.
             </span><br>
-            Це добре. З огляду на те, що мені періодично надходять листи з проханням порекомендувати когось, на це є попит, тому ти маєш всі шанси реалізувати свож бажання.
+            {{ _("From time to time I receive requests for a referral, so there is some demand for artists. I suggest that you to promote yourself more so your potential customers can reach you") }}.
         </p>
         <p class="inline">
             <span class="question">
-                Я хочу долучитися до проекту.
+                {{ _("I would like to contribute") }}.
             </span><br>
-            Долучитися дуже просто
-            <a href="http://flask.pocoo.org/">Flask</a>
-            <a href="http://getbootstrap.com/">Bootstrap</a>
-            <a href="https://github.com/grishasergei/kyivmural" class="btn btn-default btn-xs" role="button"><strong>Kyivmural on GitHub</strong></a>
+            {{ _("Great! If you are a web developer, then start with forking Kyivmural on GitHub") }}
+            <a href="https://github.com/grishasergei/kyivmural" class="btn btn-default btn-xs" role="button"><strong>Kyivmural on GitHub</strong></a>.
+            {{ _("I am looking forward to hear from you") }} <a href="mailto:#">sergii@sergii.se</a>
         </p>
     </div>
 {% endblock %}
