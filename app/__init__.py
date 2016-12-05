@@ -14,7 +14,6 @@ from datetime import datetime
 # push application context when working from termial
 # http://stackoverflow.com/questions/19437883/when-scattering-flask-models-runtimeerror-application-not-registered-on-db-w
 # create_app().app_context().push()
-APP_ROOT = os.path.dirname(os.path.abspath(__file__))   # refers to application_top
 
 
 class ContextualFilter(logging.Filter):
@@ -81,7 +80,7 @@ def create_app(config_name='default'):
                   "\turl=%(url)s\tmsg=%(message)s")
     formatter = logging.Formatter(log_format)
 
-    handler = RotatingFileHandler(os.path.join(APP_ROOT, 'log.log'), maxBytes=10000, backupCount=1)
+    handler = RotatingFileHandler('/var/log/kyivmural/log.log', maxBytes=10000, backupCount=1)
     handler.setLevel(logging.ERROR)
     handler.setFormatter(formatter)
 
