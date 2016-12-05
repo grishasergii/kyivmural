@@ -35,7 +35,7 @@
                         <td>{{ artist.nickname }}</td>
                         <td>{{ artist.url }}</td>
                         {% for lang in languages %}
-                            <td>{{ artist.get_about(lang.code)|truncate(100) }}</td>
+                            <td>{{ artist.get_about(lang.code)|truncate(100)|safe }}</td>
                         {% endfor %}
                         <td>
                             <a href="{{ url_for('main.artist', id=artist.id) }}" role="button" class="btn btn-success btn-xs">View</a>

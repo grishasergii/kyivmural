@@ -6,11 +6,23 @@ from config import config
 from flask_bootstrap import Bootstrap
 from flask_babel import Babel
 import os
+import logging
+from logging.handlers import RotatingFileHandler
+from datetime import datetime
 
 
 # push application context when working from termial
 # http://stackoverflow.com/questions/19437883/when-scattering-flask-models-runtimeerror-application-not-registered-on-db-w
 # create_app().app_context().push()
+APP_ROOT = os.path.dirname(os.path.abspath(__file__))   # refers to application_top
+
+
+class ContextualFilter(logging.Filter):
+    def filter(self, log_record):
+        log_record.utcnow = (datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S,%f %Z'))
+        log_record.url = request.path
+        log_record.ip = request.environ.get('HTTP_X_REAL_I', request.remote_addr)
+        return True
 
 bootstrap = Bootstrap()
 babel = Babel()
@@ -65,7 +77,20 @@ def create_app(config_name='default'):
     def page_not_found(e):
         return render_template('errors/404.html'), 404
 
+    log_format = ("%(utcnow)s\tl=%(levelname)s\tip=%(ip)s"
+                  "\turl=%(url)s\tmsg=%(message)s")
+    formatter = logging.Formatter(log_format)
+
+    handler = RotatingFileHandler(os.path.join(APP_ROOT, 'log.log'), maxBytes=10000, backupCount=1)
+    handler.setLevel(logging.ERROR)
+    handler.setFormatter(formatter)
+
+    app.logger.addHandler(handler)
+    app.logger.setLevel(logging.ERROR)
+    app.logger.addFilter(ContextualFilter())
+
     return app
+
 
 """
 app = Flask(__name__)

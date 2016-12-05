@@ -10,9 +10,7 @@ def after_photo_delete_listener(mapper, connection, target):
     if os.path.exists(target.full_filename):
         os.remove(target.full_filename)
 
-
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
-
 migrate = Migrate(app, db, directory=os.path.join(os.path.dirname(__file__), 'migrations'))
 
 manager = Manager(app)

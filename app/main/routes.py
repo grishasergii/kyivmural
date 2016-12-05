@@ -32,6 +32,9 @@ def mural(mural_id):
 @main.route('/murals')
 @main.route('/murals/<int:page>')
 def murals(page=1):
+    if not isinstance(page, (int, long)):
+        page = 1
+
     pagination = Mural.query.paginate(page, per_page=9, error_out=False)
     murals = pagination.items
     return render_template('main/mural/all.html',

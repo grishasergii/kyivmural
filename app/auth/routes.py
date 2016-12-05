@@ -1,4 +1,4 @@
-from flask import render_template, flash, redirect, url_for, request, g
+from flask import render_template, flash, redirect, url_for, request, g, current_app
 from .forms import LoginForm
 from . import auth
 from ..models import User
@@ -15,11 +15,10 @@ def login():
             if user.verify_password(form.password.data):
                 login_user(user, remember=form.remember_me.data)
                 return redirect(request.args.get('next') or url_for('main.index'))
-            # flash('Invalid password.')
             form.password.errors.append('Wrong password')
         else:
-            # flash('Invalid username.')
             form.username.errors.append('Unknown username')
+        current_app.logger.error('Failed authentication attempt')
 
     return render_template('auth/login.html',
                            title='Sign In',
