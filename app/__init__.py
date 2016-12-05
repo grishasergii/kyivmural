@@ -80,7 +80,7 @@ def create_app(config_name='default'):
                   "\turl=%(url)s\tmsg=%(message)s")
     formatter = logging.Formatter(log_format)
 
-    handler = RotatingFileHandler('/var/log/kyivmural/log.log', maxBytes=10000, backupCount=1)
+    handler = RotatingFileHandler('/tmp/log/kyivmural/log.log', maxBytes=10000, backupCount=1)
     handler.setLevel(logging.ERROR)
     handler.setFormatter(formatter)
 
