@@ -41,7 +41,7 @@ def get_locale():
 def create_app(config_name='default'):
     app = Flask(__name__)
     app.config.from_object(config[config_name])
-    app.wsgi_app = ProxyFix(app.wsgi_app)
+    app.wsgi_app = ProxyFix(app.wsgi_app, num_proxies=2)
     config[config_name].init_app(app)
 
     bootstrap.init_app(app)
