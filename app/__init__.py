@@ -21,7 +21,7 @@ class ContextualFilter(logging.Filter):
     def filter(self, log_record):
         log_record.utcnow = (datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S,%f %Z'))
         log_record.url = request.path
-        log_record.ip = request.environ.get('HTTP_X_REAL_I', request.remote_addr)
+        log_record.ip = request.remote_addr
         return True
 
 bootstrap = Bootstrap()
