@@ -9,6 +9,7 @@ import os
 import logging
 from logging.handlers import RotatingFileHandler
 from datetime import datetime
+from werkzeug.contrib.fixers import ProxyFix
 
 
 # push application context when working from termial
@@ -87,6 +88,8 @@ def create_app(config_name='default'):
     app.logger.addHandler(handler)
     app.logger.setLevel(logging.ERROR)
     app.logger.addFilter(ContextualFilter())
+
+    app.wsgi_app = ProxyFix(app.wsgi_app)
 
     return app
 
