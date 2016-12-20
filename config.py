@@ -4,7 +4,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config:
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'secret_key'
-    LOG_DIR = os.environ.get('LOG_DIR') or '/home/sergii/log/kyivmural/'
+    LOG_DIR = os.environ.get('LOG_DIR') or './'
     SQLALCHEMY_MIGRATE_REPO = os.path.join(basedir, 'db_repository')
     WTF_CSRF_ENABLED = True
     DEBUG = False
