@@ -62,7 +62,7 @@ def mural_form(languages, artists, mural=None):
     for lang in languages:
         # address
         label = 'address_{}'.format(lang.code)
-        field = StringField(label, validators=[DataRequired()])
+        field = StringField(label)
         setattr(MuralForm, label, field)
 
         # name

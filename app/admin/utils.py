@@ -1,15 +1,39 @@
 import os
-from flask import request
+from flask import request, current_app
 from werkzeug.utils import secure_filename
-# from run import app
 from .. import db
 from ..models import Mural, Language, Artist, ArtistTranslation, MuralPhoto, MuralTranslation
+from geopy.geocoders import Nominatim
+from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
+
+
+def get_address_from_coordinates(lat, lng, lang_code):
+    geolocator = Nominatim()
+    try:
+        location = geolocator.reverse('{}, {}'.format(lat, lng), language=lang_code)
+    except GeocoderTimedOut:
+        return 'not available'
+    except GeocoderUnavailable:
+        return 'not available'
+
+    try:
+        road = location.raw['address']['road']
+        if lang_code == 'uk':
+            road = road.split(' ')[-1].capitalize() + ' ' + ' '.join(road.split(' ')[:-1])
+    except KeyError:
+        road = ''
+
+    try:
+        house_number = location.raw['address']['house_number']
+    except KeyError:
+        house_number = ''
+
+    return u'{} {}'.format(unicode(road), house_number)
 
 
 def allowed_file(filename):
-    return True
-    # return '.' in filename and \
-           # filename.rsplit('.', 1)[1] in app.config['ALLOWED_EXTENSIONS']
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1] in current_app.config['ALLOWED_EXTENSIONS']
 
 
 def save_file(file, new_name):
@@ -17,7 +41,7 @@ def save_file(file, new_name):
     if allowed_file(filename):
         _, extension = os.path.splitext(filename)
         filename = new_name + extension
-        #file.save(os.path.join(app.config['MURAL_IMG_FOLDER'], filename))
+        file.save(os.path.join(current_app.config['MURAL_IMG_FOLDER'], filename))
         return True, filename
     else:
         return False, None
@@ -50,7 +74,10 @@ def save_mural_from_form(mural, form, languages):
         mural_translation.address = ''
         field = getattr(form, 'address_{}'.format(lang.code), None)
         if field:
-            mural_translation.address = field.data
+            if field.data:
+                mural_translation.address = field.data
+            else:
+                mural_translation.address = get_address_from_coordinates(mural.lat, mural.lng, lang.code)
 
         # name
         mural_translation.name = ''

@@ -5,8 +5,7 @@ import os
 import csv
 from urlparse import urlparse
 from bs4 import BeautifulSoup
-from geopy.geocoders import Nominatim
-from geopy.exc import GeocoderTimedOut, GeocoderUnavailable
+from utils import get_address_from_coordinates
 
 
 def import_from_csv(afile):
@@ -60,30 +59,8 @@ def parse_row(row, languages):
 
     create_photos(row[3].strip(), row[4].strip(), mural.id)
 
-    # address
-    geolocator = Nominatim()
-
     for lang in languages:
-        try:
-            location = geolocator.reverse('{}, {}'.format(mural.lat, mural.lng), language=lang.code)
-        except GeocoderTimedOut:
-            continue
-        except GeocoderUnavailable:
-            continue
-
-        try:
-            road = location.raw['address']['road']
-            if lang.code == 'ua':
-                road = road.split(' ')[-1].capitalize() + ' ' + ' '.join(road.split(' ')[:-1])
-        except KeyError:
-            road = ''
-
-        try:
-            house_number = location.raw['address']['house_number']
-        except KeyError:
-            house_number = ''
-
-        address = u'{} {}'.format(unicode(road), house_number)
+        address = get_address_from_coordinates(mural.lat, mural.lng, lang.code)
         mural_translation = MuralTranslation()
         mural_translation.language_code = lang.code
         mural_translation.address = address
