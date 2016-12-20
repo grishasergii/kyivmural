@@ -249,10 +249,7 @@ class User(UserMixin, db.Model):
         return check_password_hash(self.password_hash, password)
 
     @staticmethod
-    def insert_admin():
-        username = os.environ.get('KYIVMURAL_ADMIN_USERNAME')
-        password = os.environ.get('KYIVMURAL_ADMIN_PASSWORD')
-
+    def insert_admin(username, password):
         u = User.query.filter_by(username=username).first()
         if u is None:
             u = User()

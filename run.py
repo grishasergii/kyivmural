@@ -19,20 +19,20 @@ manager.add_command('db', MigrateCommand)
 event.listen(MuralPhoto, 'after_delete', after_photo_delete_listener)
 
 
-@manager.command
-def deploy():
+@manager.option('-n', '--name', dest='admin_username')
+@manager.option('-p', '--pass', dest='admin_password')
+def set_defaults(admin_username, admin_password):
     """
-    Run deployment tasks
+    Adds default values to the database:
+    * creates an admin user
+    * adds languages: English and Ukrainian
+    :param admin_username: admin user name
+    :param admin_password: admin user password
     :return: nothing
     """
-    from flask_migrate import upgrade, migrate
     from app.models import Language, User
-
-    #migrate()
-    #upgrade()
-
     Language.insert_languages()
-    User.insert_admin()
+    User.insert_admin(admin_username, admin_password)
 
 
 if __name__ == '__main__':
