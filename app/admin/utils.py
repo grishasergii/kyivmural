@@ -54,9 +54,12 @@ def save_mural_from_form(mural, form, languages):
 
     # artist
     artist_id = form.artist.data
-    artist = Artist.query.get(artist_id)
-    if artist:
-        mural.artists = [artist]
+    if artist_id == -1:
+        mural.artists = []
+    else:
+        artist = Artist.query.get(artist_id)
+        if artist:
+            mural.artists = [artist]
 
     # save mural
     db.session.add(mural)
