@@ -1,4 +1,4 @@
-from flask import render_template, redirect, url_for, request, g
+from flask import render_template, redirect, url_for, request, current_app
 from . import admin
 from flask_login import login_required
 from ..models import Mural, Language, Artist, ArtistTranslation, MuralPhoto, MuralTranslation
@@ -6,6 +6,7 @@ from .forms import artist_form, mural_form, MuralPhotoForm, ImportCsvForm
 from .. import db
 from utils import save_mural_from_form
 from import_from_csv import import_from_csv
+import sys
 
 # Murals
 
@@ -141,8 +142,11 @@ def artists():
 def artist_delete(id):
     artist = Artist.query.get(id)
     if artist is not None:
-        db.session.delete(artist)
-        db.session.commit()
+        try:
+            db.session.delete(artist)
+            db.session.commit()
+        except:
+            current_app.logger.error(sys.exc_info()[0])
     return redirect(url_for('admin.artists'))
 
 
