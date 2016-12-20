@@ -33,12 +33,34 @@ def mural_update(id):
     mural = Mural.query.get(id)
     artists = Artist.query.all()
     languages = Language.query.all()
-    form = mural_form(languages, artists, mural)
+    form = mural_form(languages, artists)
 
     if 'save_mural_button' in request.form:
         if form.validate_on_submit():
             save_mural_from_form(mural, form, languages)
             return redirect(url_for('admin.murals'))
+
+    # populate form fields with mural values
+    # refactor this later according to
+    # http://stackoverflow.com/questions/41184522/pass-custom-object-to-wtform/41184751#41184751
+
+    if mural:
+        form.lat.data = mural.lat
+        form.lng.data = mural.lng
+        form.artist.data = mural.artist_id
+
+        for lang in languages:
+            field = getattr(form, 'address_{}'.format(lang.code), None)
+            if field:
+                field.data = mural.get_address(lang.code)
+
+            field = getattr(form, 'description_{}'.format(lang.code), None)
+            if field:
+                field.data = mural.get_description(lang.code)
+
+            field = getattr(form, 'name_{}'.format(lang.code), None)
+            if field:
+                field.data = mural.get_name(lang.code)
 
     return render_template('admin/mural/form.html',
                            title='Edit Mural',

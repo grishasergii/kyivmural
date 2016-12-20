@@ -33,12 +33,11 @@ def artist_form(languages):
     return ArtistForm()
 
 
-def mural_form(languages, artists, mural=None):
+def mural_form(languages, artists):
     """
     Dynamically creates a mural form
     :param languages: list of Language objects, available languages
     :param artists: list of Artist objects, available artists
-    :param mural: Mural object to populate the form fileds with values
     :return: instance of MuralForm
     """
     class MuralForm(Form):
@@ -76,23 +75,5 @@ def mural_form(languages, artists, mural=None):
         setattr(MuralForm, label, field)
 
     form = MuralForm()
-
-    if mural:
-        form.lat.data = mural.lat
-        form.lng.data = mural.lng
-        form.artist.data = mural.artist_id
-
-        for lang in languages:
-            field = getattr(form, 'address_{}'.format(lang.code), None)
-            if field:
-                field.data = mural.get_address(lang.code)
-
-            field = getattr(form, 'description_{}'.format(lang.code), None)
-            if field:
-                field.data = mural.get_description(lang.code)
-
-            field = getattr(form, 'name_{}'.format(lang.code), None)
-            if field:
-                field.data = mural.get_name(lang.code)
 
     return form
