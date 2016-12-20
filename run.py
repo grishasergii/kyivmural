@@ -28,8 +28,8 @@ def deploy():
     from flask_migrate import upgrade, migrate
     from app.models import Language, User
 
-    migrate()
-    upgrade()
+    #migrate()
+    #upgrade()
 
     Language.insert_languages()
     User.insert_admin()
