@@ -25,7 +25,7 @@
                 infoWindow: {
                     content:
                              '<p class="mural-title">{{ mural.get_address(get_locale()) }} <a href="{{ url_for('main.mural', mural_id=mural.id) }}"> {{ gettext('more') }}...</a></p>' +
-                             '<p><img src="{{ url_for('static', filename='img/1x1.jpg') }}" class="img-info-window" id="lazy-{{ mural.id }}" data-src="{{ url_for('static', filename='mural_img/' + mural.photos[0].file_name) }}"></p>',
+                             '<p><img src="{{ url_for('static', filename='img/1x1.jpg') }}" class="img-info-window" id="lazy-{{ mural.id }}" data-src="{{ url_for('static', filename='mural_img/' + mural.first_photo_name) }}"></p>',
                     domready: (function(img_id) {
                         return function () {
                             var lazy_img = document.getElementById(img_id);

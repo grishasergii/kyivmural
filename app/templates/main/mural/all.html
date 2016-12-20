@@ -23,7 +23,7 @@
                 {% for mural in murals_chunk %}
                     <div class="col-sm-4">
                         <a href="{{ url_for('main.mural', mural_id=mural.id) }}">
-                            <div class="thumbnail no-margin" style="background-image: url('{{ url_for('static', filename='mural_img/' + mural.photos[0].file_name) }}')">
+                            <div class="thumbnail no-margin" style="background-image: url('{{ url_for('static', filename='mural_img/' + mural.first_photo_name) }}')">
                             </div>
                         </a>
                     </div>

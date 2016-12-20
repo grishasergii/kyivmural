@@ -73,6 +73,12 @@ class Mural(db.Model):
         else:
             return -1
 
+    @property
+    def first_photo_name(self):
+        if len(self.photos) > 0:
+            return self.photos[0].file_name
+        return '#'
+
 
 class MuralPhoto(db.Model):
     __tablename__ = 'mural_photos'
