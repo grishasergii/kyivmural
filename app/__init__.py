@@ -76,7 +76,11 @@ def create_app(config_name='default'):
 
     @app.errorhandler(404)
     def page_not_found(e):
-        app.logger.error(e)
+        return render_template('errors/404.html'), 404
+
+    @app.errorhandler(Exception)
+    def all_exception_handler(error):
+        app.logger.error(error)
         return render_template('errors/404.html'), 404
 
     log_format = ("%(utcnow)s\tl=%(levelname)s\tip=%(ip)s"
