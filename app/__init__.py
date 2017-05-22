@@ -21,7 +21,7 @@ class ContextualFilter(logging.Filter):
     def filter(self, log_record):
         log_record.utcnow = (datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S,%f %Z'))
         log_record.url = request.path
-        log_record.ip = request.access_route
+        log_record.ip = request.remote_addr
         return True
 
 bootstrap = Bootstrap()
@@ -41,7 +41,7 @@ def get_locale():
 def create_app(config_name='default'):
     app = Flask(__name__)
     app.config.from_object(config[config_name])
-    app.wsgi_app = ProxyFix(app.wsgi_app, num_proxies=2)
+    app.wsgi_app = ProxyFix(app.wsgi_app)
     config[config_name].init_app(app)
 
     bootstrap.init_app(app)
