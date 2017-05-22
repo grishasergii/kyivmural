@@ -44,6 +44,7 @@ def parse_row(row, languages):
     :param row:
     :return:
     """
+    print 'parsing mural id {0}'.format(row[0])
     # artist
     artist_name = row[6]
     artist = get_artist(artist_name)

@@ -21,7 +21,7 @@ class ContextualFilter(logging.Filter):
     def filter(self, log_record):
         log_record.utcnow = (datetime.utcnow().strftime('%Y-%m-%d %H:%M:%S,%f %Z'))
         log_record.url = request.path
-        log_record.ip = request.headers.getlist("X-Forwarded-For")
+        log_record.ip = request.access_route
         return True
 
 bootstrap = Bootstrap()
