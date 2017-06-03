@@ -1,8 +1,6 @@
 # The Murals of Kyiv website
 
-Production: http://kyivmural.com
-
-Development: http://188.166.67.16
+http://kyivmural.com
 
 # Set-up
 
