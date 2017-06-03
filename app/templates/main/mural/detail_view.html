@@ -1,17 +1,21 @@
 {%  extends "base.html" %}
 
+{% set mural_description = mural.get_description(get_locale()) %}
+
 {% block metas %}
     {{ super() }}
     <meta property="og:url" content="{{ request.url }}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="my title" />
-    <meta property="og:description" content="my description" />
+    <meta property="og:type" content="place" />
+    <meta property="og:title" content="Mural" />
+    <meta property="og:description" content="{{ mural_description }}" />
     <meta property="og:image" content="{{ url_for('static', filename='mural_img/' + mural.photos[0].file_name, _external=True) }}" />
+    <meta property="place:location:latitude"  content="{{ mural.lat }}" />
+    <meta property="place:location:longitude" content="{{ mural.lng }}" />
 
-    <meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@kyivmural" />
     <meta name="twitter:title" content="Kyivmural" />
-    <meta name="twitter:description" content="Up than 200 characters." />
+    <meta name="twitter:description" content="{{ mural_description }}" />
     <meta name="twitter:image" content="{{ url_for('static', filename='mural_img/' + mural.photos[0].file_name, _external=True) }}" />
     <meta name="twitter:domain" content="kyivmural.com" />
 {% endblock %}
@@ -60,7 +64,6 @@
                     <h1 class="no-top-margin">{{ mural_name }}</h1>
                 {% endif %}
 
-                {% set mural_description = mural.get_description(get_locale()) %}
                 {% if mural_description %}
                     <p class="lead text-justify">
                         {{ mural_description }}
