@@ -24,7 +24,7 @@ class ContextualFilter(logging.Filter):
         log_record.ip = request.remote_addr
         return True
 
-bootstrap = Bootstrap()
+# bootstrap = Bootstrap()
 babel = Babel()
 db = SQLAlchemy()
 
@@ -40,11 +40,12 @@ def get_locale():
 
 def create_app(config_name='default'):
     app = Flask(__name__)
+    Bootstrap(app)
     app.config.from_object(config[config_name])
     app.wsgi_app = ProxyFix(app.wsgi_app)
     config[config_name].init_app(app)
 
-    bootstrap.init_app(app)
+    # bootstrap.init_app(app)
 
     # set up Babel
     babel.init_app(app)
