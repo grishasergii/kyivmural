@@ -4,8 +4,9 @@ env
 env*
 .cache/
 .idea/
-.app/static/mural_img/
-.migrations/
+mural_img/
+migrations/
+*.db
 
 # from https://gist.github.com/octocat/9257657
 # Compiled source #

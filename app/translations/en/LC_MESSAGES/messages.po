@@ -187,11 +187,5 @@ msgstr ""
 #~ msgstr ""
 
 #~ msgid ""
-#~ "From time to time I receive "
-#~ "requests for a referral, so there "
-#~ "is some demand for such work. I"
-#~ " suggest that you promote yourself "
-#~ "more so your potential customers can "
-#~ "reach you"
 #~ msgstr ""
 

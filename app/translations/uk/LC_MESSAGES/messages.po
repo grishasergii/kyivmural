@@ -68,7 +68,7 @@ msgstr "Наразі Київмурал налічує"
 
 #: app/templates/index.html:55
 msgid "artworks"
-msgstr "стінописів"
+msgstr "стінописа"
 
 #: app/templates/index.html:55
 msgid "and"
@@ -76,7 +76,7 @@ msgstr "та"
 
 #: app/templates/index.html:55
 msgid "artists"
-msgstr "художників"
+msgstr "художника"
 
 #: app/templates/index.html:60
 msgid "Discover"
