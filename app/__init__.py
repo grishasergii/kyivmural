@@ -95,6 +95,10 @@ def create_app(config_name='default'):
     app.logger.setLevel(logging.ERROR)
     app.logger.addFilter(ContextualFilter())
 
+    @app.context_processor
+    def inject_now():
+        return {'now': datetime.utcnow()}
+
     return app
 
 
