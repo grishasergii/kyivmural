@@ -105,11 +105,17 @@ class MuralPhoto(db.Model):
     @property
     def copyright_string(self):
         result = ''
+
         if self.copyright_name:
-            result = gettext('photo') + ': ' + self.copyright_name
+            result = self.copyright_name
+
         if self.copyright_url:
             parsed_url = urlparse(self.copyright_url)
-            result += gettext('photo') + ': <a href="{}">{}</a>'.format(self.copyright_url, parsed_url.netloc)
+            result += ' <a href="{}">{}</a>'.format(self.copyright_url, parsed_url.netloc)
+
+        if result:
+            result + gettext('photo') + ': ' + result
+
         return Markup(result)
 
 
