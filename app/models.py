@@ -114,7 +114,7 @@ class MuralPhoto(db.Model):
             result += ' <a href="{}">{}</a>'.format(self.copyright_url, parsed_url.netloc)
 
         if result:
-            result + gettext('photo') + ': ' + result
+            result = gettext('photo') + ': ' + result
 
         return Markup(result)
 
